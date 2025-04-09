@@ -1,0 +1,14 @@
+
+curl -X POST http://localhost:3000/soap -H "Content-Type: text/xml" -d "<soap:Envelope xmlns:soap='http://schemas.xmlsoap.org/soap/envelope/'> <soap:Body>  <GetUser xmlns='http://example.com/soap-service'> <userId>123</userId> </GetUser> </soap:Body> </soap:Envelope>"
+
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetUserResponse xmlns="http://example.com/soap-service">
+      <user>
+        <id>123</id>
+        <name>User_123</name>
+      </user>
+    </GetUserResponse>
+  </soap:Body>
+</soap:Envelope>

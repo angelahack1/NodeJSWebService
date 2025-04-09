@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="9d710408-bbb4-4702-a8e2-cb1e0505c965" activeEnvironment="Default" name="NodeJSWebService" resourceRoot="" soapui-version="5.8.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="f211d1b8-146e-4dd4-b318-02588bb30585" wsaVersion="NONE" name="UserServiceBinding" type="wsdl" bindingName="{http://example.com/soap-service}UserServiceBinding" soapVersion="1_1" anonymous="optional" definition="file:/E:/Devs/nodejsws/service.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:\E:\Devs\nodejsws\service.wsdl"><con:part><con:url>file:\E:\Devs\nodejsws\service.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="http://example.com/soap-service" name="UserService" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://example.com/soap-service">
+  <!--Types (schema for request/response)-->
+  <types>
+    <xsd:schema targetNamespace="http://example.com/soap-service">
+      <xsd:element name="GetUser">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="userId" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="GetUserResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="user">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="id" type="xsd:string"/>
+                  <xsd:element name="name" type="xsd:string"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+  <!--Messages (input/output)-->
+  <message name="GetUserRequest">
+    <part name="parameters" element="tns:GetUser"/>
+  </message>
+  <message name="GetUserResponse">
+    <part name="parameters" element="tns:GetUserResponse"/>
+  </message>
+  <!--Port (interface)-->
+  <portType name="UserServicePortType">
+    <operation name="GetUser">
+      <input message="tns:GetUserRequest"/>
+      <output message="tns:GetUserResponse"/>
+    </operation>
+  </portType>
+  <!--Binding (SOAP-specific details)-->
+  <binding name="UserServiceBinding" type="tns:UserServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="GetUser">
+      <soap:operation soapAction="http://example.com/soap-service/GetUser"/>
+      <input>
+        <soap:body use="literal" namespace="http://example.com/soap-service"/>
+      </input>
+      <output>
+        <soap:body use="literal" namespace="http://example.com/soap-service"/>
+      </output>
+    </operation>
+  </binding>
+  <!--Service (endpoint)-->
+  <service name="UserService">
+    <port name="UserServicePort" binding="tns:UserServiceBinding">
+      <soap:address location="http://localhost:3000/soap"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:3000/soap</con:endpoint></con:endpoints><con:operation id="c7b41be0-a0fd-4012-ab6f-8501d705a137" isOneWay="false" action="http://example.com/soap-service/GetUser" name="GetUser" bindingOperationName="GetUser" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="85791b75-aa15-4da2-8cb9-433000b5b31c" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:3000/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://example.com/soap-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:GetUser>\r
+         <userId>999</userId>\r
+      </soap:GetUser>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://example.com/soap-service/GetUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
